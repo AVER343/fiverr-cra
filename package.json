@@ -24,7 +24,7 @@
     "start": "nodemon app.js",
     "server": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm start && cd client && npm install && run build && npm start"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install && run build "
   },
   "engines":{
     "node": "12.17.0",
