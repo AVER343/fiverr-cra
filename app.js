@@ -7,7 +7,7 @@ const app =express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true })); 
 require('./db/mongoose')
-
+const PORT=process.env.PORT ||5000
 const passenger=require('./routes/passenger')
 const admin = require('./routes/admin')
 app.use(bodyParser.json())
@@ -21,4 +21,4 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(5000,()=>console.log('LISTENING AT 5000'))
+app.listen(PORT,()=>console.log('LISTENING AT 5000'))
