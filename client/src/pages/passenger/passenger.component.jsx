@@ -102,6 +102,7 @@ class Passenger extends React.Component{
 }
 async componentDidMount (){
        const axiosRes=await axios.get(`passengers/${this.props.match.params.id}`)
+       console.log('res')
        console.log(axiosRes)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
        const {bookingInfo} =axiosRes.data
