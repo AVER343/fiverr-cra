@@ -84,7 +84,7 @@ class Passenger extends React.Component{
         return
     }
     const data=new FormData()
-    await axios.patch(`/passenger/${this.props.match.params.id}`,{passengers:JSON.stringify(this.state.passengersInfo)});
+    await axios.patch(`passenger/${this.props.match.params.id}`,{passengers:JSON.stringify(this.state.passengersInfo)});
     await this.setState({visible:false})
   }
       catch(e){
@@ -101,7 +101,7 @@ class Passenger extends React.Component{
       }
 }
 async componentDidMount (){
-       const axiosRes=await axios.get(`/passenger/${this.props.match.params.id}`)
+       const axiosRes=await axios.get(`passengers/${this.props.match.params.id}`)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
        const {bookingInfo} =axiosRes.data
        console.log('BookingInfo')
