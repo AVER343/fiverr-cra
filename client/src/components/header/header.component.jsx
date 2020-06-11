@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as logo from '../../assets/logo.png'
-import React from 'react';
 import {
   HeaderContainer,
   LogoContainer,
