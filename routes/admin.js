@@ -54,14 +54,6 @@ router.post('/admin/logoutAll', auth, async (req, res) => {
         res.status(500).send()
     }
 })
-router.get('/admin',auth,async(req,res)=>{
-    try{
-        res.sendStatus(200)
-    }   
-    catch(e){
-
-    }
-})
 router.post('/admin/passenger',auth,upload.any(),async(req,res)=>{
     try{    
        const passengers=JSON.parse(req.body.passengers)
