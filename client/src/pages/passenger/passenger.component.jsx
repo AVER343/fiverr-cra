@@ -33,7 +33,7 @@ class Passenger extends React.Component{
         draggable: true,
         progress: undefined,
         });
-        await axios.patch(`/passenger/${this.props.match.params.id}`,{passengers:JSON.stringify(this.state.passengersInfo)});
+        await axios.patch(`passenger/${this.props.match.params.id}`,{passengers:JSON.stringify(this.state.passengersInfo)});
     }
     catch(e)
     {
