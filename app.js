@@ -14,11 +14,7 @@ app.use(bodyParser.json())
 app.use(admin)
 app.use(passenger)
 app.use(express.static('client/build'))
-app.use("*", (req, res) => {
+app.use("/*", (req, res) => {
         res.sendFile(path.join(__dirname, "client", "build", "index.html"));
     });
-
-
-
-
-app.listen(PORT,()=>console.log('LISTENING AT 5000'))
+app.listen(PORT,()=>console.log(`LISTENING AT ${PORT}`))
