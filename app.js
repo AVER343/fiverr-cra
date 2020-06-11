@@ -1,6 +1,7 @@
 const express =require('express')
 const cors = require('cors')
 var multer = require('multer');
+const path = require('path')
 var upload = multer();
 const bodyParser = require('body-parser')
 const app =express()
@@ -13,8 +14,8 @@ const admin = require('./routes/admin')
 app.use(bodyParser.json())
 app.use(admin)
 app.use(passenger)
-app.use("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
+app.use(express.static('client/build'))
+app.use("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    });
 app.listen(PORT,()=>console.log(`LISTENING AT ${PORT}`))
