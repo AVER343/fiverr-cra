@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ButtonsBarContainer from './admin.styles'
+import { Link } from 'react-router-dom'
 class AdminPage extends React.Component{
     constructor(props){
         super(props)
@@ -89,7 +90,7 @@ class AdminPage extends React.Component{
           data.append('files', image)
           data.append('passengers',JSON.stringify(passengersInfo))
           data.append('price',price)
-          const posted=await axios.post("/admin/passenger", data,{ headers:{'Authorization':`Bearer ${this.props.token}`,"Content-Type": "multipart/form-data"}})
+          const posted=await axios.post("admin/passenger", data,{ headers:{'Authorization':`Bearer ${this.props.token}`,"Content-Type": "multipart/form-data"}})
          if(posted.status==200){ this.setState({id:posted.data.id,submit:true})}
          toast.success('Data Successfully saved !', {
           position: "bottom-center",
@@ -136,7 +137,7 @@ class AdminPage extends React.Component{
                 </p>
                 <hr />
                 <p className="mb-0">
-                http://localhost:3000/passenger/{this.state.id?this.state.id:null}
+                {<Link to={`/passenger/${this.state.id}`}/>`https://skyluxbookings.herokuapp.com/passenger/${this.state.id?this.state.id:null}`}
                 </p>
               </Alert>
              </div>:null}
