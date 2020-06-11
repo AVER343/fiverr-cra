@@ -33,7 +33,7 @@ router.patch('/passenger/:id',async(req,res)=>{
         }
 })
 
-router.get('/passenger/:id',async (req,res)=>{
+router.get('/passengers/:id',async (req,res)=>{
     try{
       const id = req.params.id
       const extractID = await jwt.verify(id,`SECRET_KEY`)
