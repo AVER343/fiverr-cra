@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import * as logo from '../../assets/logo.png'
 import {
   HeaderContainer,
@@ -10,7 +10,6 @@ import {
 
 const Header = (props) => (
   <HeaderContainer>
-      {console.log(props)}
     <LogoContainer to='/'>
      <img src={logo}/>
     </LogoContainer>
@@ -27,4 +26,4 @@ const Header = (props) => (
     </OptionsContainer>
   </HeaderContainer>
 );
-export default Header;
+export default withRouter(Header);
