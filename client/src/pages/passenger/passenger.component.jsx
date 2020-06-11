@@ -23,7 +23,6 @@ class Passenger extends React.Component{
     
     onToken =async token => {
    try{ 
-       console.log(token)
     await this.setState({booked:true,visible:true})
     toast.success('Payment Successful !', {
         position: "bottom-center",
@@ -60,7 +59,6 @@ class Passenger extends React.Component{
             return prevState;                              
           })
         await this.setState({[name]:value})
-        console.log(this.state)
   }
   handleChange=async (event)=>{
         event.preventDefault()
@@ -106,6 +104,7 @@ async componentDidMount (){
        const axiosRes=await axios.get(`passengers/${this.props.match.params.id}`)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
        const {bookingInfo} =axiosRes.data
+       console.log('BookingInfo')
        console.log(bookingInfo)
         await this.setState({price:bookingInfo.price,image:bookingInfo.image,passengersInfo:bookingInfo.passengers,passengers:bookingInfo.passengers.length,booked:bookingInfo.booked})
     }
