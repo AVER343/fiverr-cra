@@ -11,11 +11,10 @@ const PORT=process.env.PORT ||5000
 const passenger=require('./routes/passenger')
 const admin = require('./routes/admin')
 app.use(bodyParser.json())
+app.use(admin)
+app.use(passenger)
 app.use("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-app.use(admin)
-app.use(passenger)
-app.use(express.static('client/build'))
 
 app.listen(PORT,()=>console.log(`LISTENING AT ${PORT}`))
