@@ -8,15 +8,16 @@ import {
   OptionLink
 } from './header.styles';
 
-const Header = ({ username }) => (
+const Header = (props) => (
   <HeaderContainer>
+      {console.log(props)}
     <LogoContainer to='/'>
      <img src={logo}/>
     </LogoContainer>
     <OptionsContainer>
       {/* <OptionLink to='/shop'></OptionLink>
       <OptionLink to='/shop'>CONTACT</OptionLink> */}
-      {username=='admin' ? (
+      {props.username=='admin' ? (
         <OptionLink as='div' onClick={() =>console.log("Logging OUt")}>
           SIGN OUT
         </OptionLink>
