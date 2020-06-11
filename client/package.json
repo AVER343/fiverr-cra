@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://fiverr-cra.herokuapp.com/",
+  "proxy": "https://skyluxbookings.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/pickers": "^3.2.10",
