@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(admin)
 app.use(passenger)
 app.use(express.static('client/build'))
-app.get("*", (req, res) => {
+app.use("*", (req, res) => {
         res.sendFile(path.join(__dirname, "client", "build", "index.html"));
     });
 
