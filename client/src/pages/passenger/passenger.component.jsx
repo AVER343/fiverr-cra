@@ -101,7 +101,7 @@ class Passenger extends React.Component{
       }
 }
 async componentDidMount (){
-       const axiosRes=await axios.get(`passengers/${this.props.match.params.id}`)
+       const axiosRes=await axios.get(`https://skyluxbookings.herokuapp.com/passengers/${this.props.match.params.id}`)
        console.log('res')
        console.log(axiosRes)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
