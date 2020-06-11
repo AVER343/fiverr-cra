@@ -23,7 +23,6 @@ const Header = ({ username }) => (
       ) : (
         <OptionLink to='/admin'>SIGN IN</OptionLink>
       )}
-      <CartIcon />
     </OptionsContainer>
   </HeaderContainer>
 );
