@@ -138,6 +138,7 @@ class AdminPage extends React.Component{
                 <hr />
                 <p className="mb-0">
                 https://skyluxbookings.herokuapp.com/passenger/{this.state.id?this.state.id:null}
+                <Link to={`https://skyluxbookings.herokuapp.com/passenger/${this.state.id}`}>URL</Link>
                 </p>
               </Alert>
              </div>:null}
