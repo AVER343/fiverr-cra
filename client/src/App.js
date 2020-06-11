@@ -40,7 +40,7 @@ catch(e){
         <Switch>
           <Route path='/' exact component={Homepage}/>
           <Route path='/admin' render={()=>this.state.username=='admin'?<AdminPage token={this.state.token}/>:<AdminLoginPage username  handleSubmit={this.handleSubmit}/>}/> 
-          <Route path='/passengers' component={Passenger}/>
+          <Route path='/passengers/:id' component={Passenger}/>
           <Route render={()=><div>404-Error</div>} />
         </Switch>
         <StickyFooter/>
