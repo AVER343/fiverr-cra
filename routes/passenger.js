@@ -3,7 +3,7 @@ const Booking= require('../models/booked')
 const express= require('express')
 const router= express.Router()
 const jwt =require('jsonwebtoken')
-router.patch('passenger/:id',async(req,res)=>{
+router.patch('/passenger/:id',async(req,res)=>{
     try{ 
         const id = req.params.id
         const extractID = await jwt.verify(id,`SECRET_KEY`)
@@ -33,7 +33,7 @@ router.patch('passenger/:id',async(req,res)=>{
         }
 })
 
-router.get('passenger/:id',async (req,res)=>{
+router.get('/passengers/:id',async (req,res)=>{
     try{
       const id = req.params.id
       const extractID = await jwt.verify(id,`SECRET_KEY`)
