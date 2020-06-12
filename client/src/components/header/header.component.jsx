@@ -44,7 +44,6 @@ const Header = (props) => (
       <div _ngcontent-voh-c5="">Travel itinerary prepared by Austin Anderson</div>
       <a _ngcontent-voh-c5="" href="mailto:austin@skyluxtravel.com">austin@skyluxtravel.com</a>
     </div>}
-    
   </div>
   {props.location.pathname.includes('/passenger')||props.location.pathname.includes('/admin')?null:<OptionsContainer style={{marginRight:'auto'}}>
       {/* <OptionLink to='/shop'></OptionLink>
@@ -64,6 +63,7 @@ const Header = (props) => (
           fontSize: `16px`}}>SIGN IN</OptionLink>
       )}
     </OptionsContainer>}
+    <hr class="solid"/>
    </div>
 );
 export default withRouter(Header);

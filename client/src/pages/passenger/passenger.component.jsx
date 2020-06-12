@@ -112,11 +112,13 @@ async componentDidMount (){
        console.log(bookingInfo)
         await this.setState({price:bookingInfo.price,image:bookingInfo.image,passengersInfo:bookingInfo.passengers,passengers:bookingInfo.passengers.length,booked:bookingInfo.booked})
     }
-   Example = () => <img style={{margin:`20px`}} src={`data:image/jpeg;base64,${this.state.image}`} />
+   Example = () => <img  src={`data:image/jpeg;base64,${this.state.image}`} />
     render(){
-        return(<div className="container">
+        return(<div>
         <form onSubmit={this.onSubmit}>
-            {<this.Example style={{width:'80%',marginLeft:'5%',marginRight:'5%'}}></this.Example>}
+            <div id="travelInfo"  style={{textAlign:'center'}}_ngcontent-voh-c6="" class="trip"><h2 _ngcontent-voh-c6="" class="trip-to"> your trip to </h2><h1 _ngcontent-voh-c6="" class="trip-location"> Barcelona, Spain </h1></div>
+            <hr class="solid"></hr>
+            {<this.Example style={{width:'100%'}}></this.Example>}
             <div _ngcontent-voh-c2="" class="block-title"><div _ngcontent-voh-c2="" class="block-title-icon heading-sprite heading-sprite__passengers"></div><h2 _ngcontent-voh-c2="" class="block-title-text"><img src={passenger} style={{height:'50px',width:`40px`,color:'#412E64'}}/>Passengers:{this.state.passengers}</h2></div>
             <ButtonsBarContainer>
                 </ButtonsBarContainer>

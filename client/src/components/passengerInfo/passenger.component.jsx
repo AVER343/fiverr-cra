@@ -8,9 +8,7 @@ const PassengerInfoComponent= (props)=>{
         props.handleChange(event,props.index)
     }
     return(
-     <div style={{ border:`3px solid gray`,
-      padding: `5%`,
-      margin: `5%`}}>
+     <div className='conatiner' style={{margin:'20px'}} style={{ border:`3px solid gray`}}>
         <div style={{fontSize:'30px'}}>Passenger : {props.index + 1 }</div>
     <div className="row">
       <div className="row">

@@ -59,7 +59,7 @@ font-size: 12px;
 box-sizing: border-box;
 width: 100%;
 height: 1px;
-border-bottom: 1px solid #c6d3de;
+
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
@@ -70,3 +70,6 @@ border-bottom: 1px solid #c6d3de;
     -webkit-box-pack: justify;
     height: 100%;
     justify-content: space-evenly;}
+hr.solid {
+    border-bottom: 1px solid #c6d3de;   
+      }
