@@ -11,7 +11,8 @@ import { toast,ToastContainer } from 'react-toastify'
 import { withRouter } from 'react-router-dom'
 import  './pass.styles.css'
 import SimpleAlerts from '../../components/alert/alert.component'
-const numWords = require('num-words')
+import DiscreteSlider from '../../components/slider/slider'
+const numWords=require('number-to-words')
 class Passenger extends React.Component{
     constructor(props){
         super(props)
@@ -106,6 +107,13 @@ class Passenger extends React.Component{
             }); 
       }
 }
+handleChangeChange=()=>{
+    return <DiscreteSlider valuetext={this.valuetext}/>
+}
+valuetext=()=> {
+    console.log("BEING CALLEED")
+    return `${this.state.appreciation_amount}$`;
+  }
 async componentDidMount (){
        const axiosRes=await axios.get(`https://skyluxbookings.herokuapp.com/passengers/${this.props.match.params.id}`)
        console.log('res')
@@ -128,7 +136,7 @@ async componentDidMount (){
                 </ButtonsBarContainer>
                 {this.state.passengersInfo.map((info,key)=><PassengerInfoComponent index={key} key={key} handleChange={this.changePassengerInfo} state={this.state.passengersInfo[key]}/>)}                
                {this.state.booked?null:<div> <div _ngcontent-ojn-c7="" className="wrapper" id="checkboxSt">
-                    <label _ngcontent-ojn-c7="" className="checkbox checkbox__success ng-untouched ng-pristine ng-invalid" for="feesConfirm">
+                    <label _ngcontent-ojn-c7="" className="checkbox checkbox__success ng-untouched ng-pristine ng-invalid" htmlFor="feesConfirm">
                         <input _ngcontent-ojn-c7="" className="ng-tns-c7-0 ng-untouched ng-pristine ng-invalid" formcontrolname="feesConfirm" id="feesConfirm" type="checkbox"/>
                             <span _ngcontent-ojn-c7="" className="checkbox__text"> I have read and accept 
                                 <a _ngcontent-ojn-c7="" className="checkbox-stylized" > Terms &amp; Conditions </a> and 
@@ -140,7 +148,7 @@ async componentDidMount (){
                         <div className="tips-btn-container">
                             <div className="tips-sum__number font-bold"> ${this.state.appreciation_amount} </div>
                             <div className="tips-btn">
-                                <button className="submit-btn hardcopy-hidden" type="button"> CHANGE </button>
+                                <button className="submit-btn hardcopy-hidden" type="button" onClick={this.handleChangeChange}> CHANGE </button>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +156,7 @@ async componentDidMount (){
                     <div className="tips__title font-bold">did we meet your expectations?</div>
                     <div className="tips__info"> If you feel that the service provided was exceptional, you can express your graditude (optional) </div>
                     <div className="tips-checkbox-container checkbox-disabled">
-                        <label className="tips-checkbox-label" for="confirm-tips">
+                        <label className="tips-checkbox-label" htmlFor="confirm-tips">
                             <div className="tips-checkbox-custom error">
                                 <input className="tips-checkbox ng-untouched ng-pristine" formcontrolname="isTipsConfirmed" id="confirm-tips" type="checkbox" disabled=""/>
                             </div>
@@ -161,9 +169,9 @@ async componentDidMount (){
                             <span _ngcontent-ojn-c12="" className="price-span"style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>{this.state.price} </span>
                             </h3></div>
                             <h2 _ngcontent-ojn-c12="" className="total-title__wire" style={{fontSize:'29px',textAlign:'center', marginBottom:'0px'}}> Total to be charged : ${this.state.price}</h2>
-                            <h3 _ngcontent-ojn-c12="" style={{}} className="total-pre-title" style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>  {` `+ numWords(this.state.price).toUpperCase()+` DOLLARS`} </h3>
+                            <h3 _ngcontent-ojn-c12="" style={{}} className="total-pre-title" style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>  {` `+ numWords.toWords(this.state.price).toUpperCase()+` DOLLARS`} </h3>
                             </div><div _ngcontent-ojn-c12="" className="ng-star-inserted">
-                                <label _ngcontent-ojn-c12="" className="checkbox checkbox__success" for="confirm4">
+                                <label _ngcontent-ojn-c12="" className="checkbox checkbox__success" htmlFor="confirm4">
 <input _ngcontent-ojn-c12="" formcontrolname="cardCharge" id="confirm4" type="checkbox" className="ng-untouched ng-pristine ng-invalid"/>
     <span _ngcontent-ojn-c12="" className="checkbox__text"> I agree that my card will be charged the above total amount which includes the SkyLux consulting fee and the applicable airline and government imposed taxes and fees . 
                 </span></label></div></div></div>}
