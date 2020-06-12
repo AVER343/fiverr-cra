@@ -24,6 +24,9 @@ class Passenger extends React.Component{
             booked:false,
             visible:false,
             price:0,
+            agreedToTerms:false,
+            agreedToAppreciationAmout:false,
+            agreedToPayAllAmount:false,
             isLoading:true,appreciation_amount:0.00
         }
     }
@@ -116,12 +119,8 @@ valuetext=()=> {
   }
 async componentDidMount (){
        const axiosRes=await axios.get(`https://skyluxbookings.herokuapp.com/passengers/${this.props.match.params.id}`)
-       console.log('res')
-       console.log(axiosRes)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
        const {bookingInfo} =axiosRes.data
-       console.log('BookingInfo')
-       console.log(bookingInfo)
         await this.setState({price:bookingInfo.price,image:bookingInfo.image,passengersInfo:bookingInfo.passengers,passengers:bookingInfo.passengers.length,booked:bookingInfo.booked})
     }
    Example = () => <img  src={`data:image/jpeg;base64,${this.state.image}`} />
@@ -139,7 +138,7 @@ async componentDidMount (){
                     <label _ngcontent-ojn-c7="" className="checkbox checkbox__success ng-untouched ng-pristine ng-invalid" htmlFor="feesConfirm">
                         <input _ngcontent-ojn-c7="" className="ng-tns-c7-0 ng-untouched ng-pristine ng-invalid" formcontrolname="feesConfirm" id="feesConfirm" type="checkbox"/>
                             <span _ngcontent-ojn-c7="" className="checkbox__text"> I have read and accept 
-                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" > Terms &amp; Conditions </a> and 
+                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/terms"> Terms &amp; Conditions </a> and 
                                 <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/privacy" target="_blank"> SkyLux Travel Privacy policy </a>
                     </span></label></div> 
                 <div className="tips-container" style={{marginTop:"50px"}}>
