@@ -34,13 +34,12 @@ catch(e){
 }
   render(){
     return (
-      <div>
-        <Header username={this.state.username}/>
-        
+      <div>    
+         <Header/>  
         <Switch>
           <Route path='/' exact component={Homepage}/>
           <Route path='/admin' render={()=>this.state.username=='admin'?<AdminPage token={this.state.token}/>:<AdminLoginPage username  handleSubmit={this.handleSubmit}/>}/> 
-          <Route path='/passenger/:id' component={Passenger}/>
+          <Route path='/passenger/:id' render={()=><div className="container"><Passenger/></div>}/>
           <Route render={()=><div>404-Error</div>} />
         </Switch>
         <StickyFooter/>

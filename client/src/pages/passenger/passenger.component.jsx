@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import * as passenger from '../../assets/travel.png'
 import FormInput from '../../components/form-input/form-input.component'
 import CustomButton from '../../components/custom-button/custom-button.component'
 import { SignInContainer } from '../../components/adminLoginPage/adminLoginPage.styles'
@@ -7,6 +8,7 @@ import PassengerInfoComponent from '../../components/passengerInfo/passenger.com
 import ButtonsBarContainer ,{WarningContainer} from './passenger.styles'
 import StripeCheckoutButton from '../../components/stripe/stripe.component'
 import { toast,ToastContainer } from 'react-toastify'
+import { withRouter } from 'react-router-dom'
 class Passenger extends React.Component{
     constructor(props){
         super(props)
@@ -110,29 +112,27 @@ async componentDidMount (){
        console.log(bookingInfo)
         await this.setState({price:bookingInfo.price,image:bookingInfo.image,passengersInfo:bookingInfo.passengers,passengers:bookingInfo.passengers.length,booked:bookingInfo.booked})
     }
-   Example = () => <img src={`data:image/jpeg;base64,${this.state.image}`} />
+   Example = () => <img style={{margin:`20px`}} src={`data:image/jpeg;base64,${this.state.image}`} />
     render(){
         return(<div className="container">
         <form onSubmit={this.onSubmit}>
-            {<this.Example style={{width:'80%',margineLeft:'5%',marginRight:'5%'}}></this.Example>}
-                Passengers :{this.state.passengers}
+            {<this.Example style={{width:'80%',marginLeft:'5%',marginRight:'5%'}}></this.Example>}
+            <div _ngcontent-voh-c2="" class="block-title"><div _ngcontent-voh-c2="" class="block-title-icon heading-sprite heading-sprite__passengers"></div><h2 _ngcontent-voh-c2="" class="block-title-text"><img src={passenger} style={{height:'50px',width:`40px`,color:'#412E64'}}/>Passengers:{this.state.passengers}</h2></div>
             <ButtonsBarContainer>
                 </ButtonsBarContainer>
-                
                 {this.state.passengersInfo.map((info,key)=><PassengerInfoComponent index={key} key={key} handleChange={this.changePassengerInfo} state={this.state.passengersInfo[key]}/>)}
                 {this.state.booked?null:<StripeCheckoutButton price={this.state.price} disabled={this.state.booked} onToken={this.onToken}></StripeCheckoutButton>}
-
                <WarningContainer>
                     *Please use the following test credit card for payments*
                     <br />
                     4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
                 </WarningContainer>
-                {this.state.visible?<input type="submit" />:null}
+                {this.state.visible?<CustomButton type="submit" />:null}
                 <ToastContainer />
         </form>
     </div>)
     }
 }
 
-export default Passenger    
+export default withRouter(Passenger)    
     
