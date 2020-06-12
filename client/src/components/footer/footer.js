@@ -38,7 +38,7 @@ export default function StickyFooter() {
     <div className={classes.root}>   
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">My sticky footer can be found here.</Typography>
+        <div _ngcontent-fgm-c13="" class="wrapper partners"><ul _ngcontent-fgm-c13="" class="partners-list"><li _ngcontent-fgm-c13="" class="partners-item partners-item__asta"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__pata"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__acta"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__norton"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__master-card"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__visa"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__discover"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__american"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__diners"></li><li _ngcontent-fgm-c13="" class="partners-item partners-item__bbb"></li></ul></div>
           <Copyright />
         </Container>
       </footer>

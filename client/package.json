@@ -5,6 +5,7 @@
   "proxy": "https://skyluxbookings.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.10",
     "@progress/kendo-react-upload": "^3.14.0",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -16,6 +17,7 @@
     "bootstrap": "^4.5.0",
     "date-fns": "^2.14.0",
     "materialize-css": "^1.0.0-rc.2",
+    "num-words": "^1.2.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-calendar": "^3.1.0",
