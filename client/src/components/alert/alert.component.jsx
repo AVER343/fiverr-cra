@@ -20,3 +20,12 @@ export default function SimpleAlerts() {
     </div>
   );
 }
+export const SimpleAlerts1 =()=> {
+    const classes = useStyles();
+  
+    return (
+      <div className={classes.root}>
+        <Alert style={{marginTop:"20px",fontSize:'15px',textAlign:'center'}} severity="error">CHECKBOXES NOT CHECKED !</Alert>
+      </div>
+    );
+  }

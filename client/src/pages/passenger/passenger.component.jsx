@@ -10,8 +10,8 @@ import StripeCheckoutButton from '../../components/stripe/stripe.component'
 import { toast,ToastContainer } from 'react-toastify'
 import { withRouter } from 'react-router-dom'
 import  './pass.styles.css'
-import SimpleAlerts from '../../components/alert/alert.component'
-import DiscreteSlider from '../../components/slider/slider'
+import SimpleAlerts,{SimpleAlerts1} from '../../components/alert/alert.component'
+import Checkboxes from '../../components/checkbox/checkbox'
 const numWords=require('number-to-words')
 class Passenger extends React.Component{
     constructor(props){
@@ -23,14 +23,16 @@ class Passenger extends React.Component{
             passengersInfo:[],
             booked:false,
             visible:false,
+            sliderVisible:false,
             price:0,
             agreedToTerms:false,
             agreedToAppreciationAmout:false,
             agreedToPayAllAmount:false,
-            isLoading:true,appreciation_amount:0.00
+            isLoading:true,
+            appreciation_amount:0
         }
     }
-    
+   
     onToken =async token => {
    try{ 
     await this.setState({booked:true,visible:true})
@@ -110,13 +112,9 @@ class Passenger extends React.Component{
             }); 
       }
 }
-handleChangeChange=()=>{
-    return <DiscreteSlider valuetext={this.valuetext}/>
-}
-valuetext=()=> {
-    console.log("BEING CALLEED")
-    return `${this.state.appreciation_amount}$`;
-  }
+newhandleChange = (event) => {
+    this.setState({agreedToAppreciationAmout:!this.state.agreedToAppreciationAmout})
+};
 async componentDidMount (){
        const axiosRes=await axios.get(`https://skyluxbookings.herokuapp.com/passengers/${this.props.match.params.id}`)
         axiosRes.data.bookingInfo.passengers[0].date= axiosRes.data.bookingInfo.passengers[0].date.split('T')[0]
@@ -132,14 +130,15 @@ async componentDidMount (){
             {<this.Example style={{width:'100%',margin:'30px'}}></this.Example>}
             <div _ngcontent-voh-c2="" className="block-title"><div _ngcontent-voh-c2="" className="block-title-icon heading-sprite heading-sprite__passengers"></div><h2 _ngcontent-voh-c2="" className="block-title-text"><img src={passenger} style={{height:'50px',width:`40px`,color:'#412E64'}}/>Passengers:{this.state.passengers}</h2></div>
             <ButtonsBarContainer>
-                </ButtonsBarContainer>
+                </ButtonsBarContainer> 
+               
                 {this.state.passengersInfo.map((info,key)=><PassengerInfoComponent index={key} key={key} handleChange={this.changePassengerInfo} state={this.state.passengersInfo[key]}/>)}                
                {this.state.booked?null:<div> <div _ngcontent-ojn-c7="" className="wrapper" id="checkboxSt">
                     <label _ngcontent-ojn-c7="" className="checkbox checkbox__success ng-untouched ng-pristine ng-invalid" htmlFor="feesConfirm">
-                        <input _ngcontent-ojn-c7="" className="ng-tns-c7-0 ng-untouched ng-pristine ng-invalid" formcontrolname="feesConfirm" id="feesConfirm" type="checkbox"/>
-                            <span _ngcontent-ojn-c7="" className="checkbox__text"> I have read and accept 
-                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/terms"> Terms &amp; Conditions </a> and 
-                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/privacy" target="_blank"> SkyLux Travel Privacy policy </a>
+                    <Checkboxes checked={this.state.agreedToTerms} handleChange={this.handleTermsAgreed} />
+                            <span _ngcontent-ojn-c7="" className="checkbox__text" style={{fontSize:'20px'}}> I have read and accept 
+                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/terms"style={{fontSize:'20px'}}> Terms &amp; Conditions </a> and 
+                                <a _ngcontent-ojn-c7="" className="checkbox-stylized" href="https://www.skyluxtravel.com/privacy"style={{fontSize:'20px'}} target="_blank"> SkyLux Travel Privacy policy </a>
                     </span></label></div> 
                 <div className="tips-container" style={{marginTop:"50px"}}>
                     <div className="tips-sum">
@@ -147,39 +146,64 @@ async componentDidMount (){
                         <div className="tips-btn-container">
                             <div className="tips-sum__number font-bold"> ${this.state.appreciation_amount} </div>
                             <div className="tips-btn">
-                                <button className="submit-btn hardcopy-hidden" type="button" onClick={this.handleChangeChange}> CHANGE </button>
+                                <button className="submit-btn hardcopy-hidden" type="button" onClick={()=>this.setState({sliderVisible:!this.state.sliderVisible})}> CHANGE </button>
+                                {this.state.sliderVisible?<FormInput name="appreciation_amount" handleChange={this.handleAppreciation} value={this.state.appreciation_amount}/> :null}
                                 </div>
                             </div>
                         </div>
                     <div className="tips-text">
                     <div className="tips__title font-bold">did we meet your expectations?</div>
                     <div className="tips__info"> If you feel that the service provided was exceptional, you can express your graditude (optional) </div>
-                    <div className="tips-checkbox-container checkbox-disabled">
+                    <div className="tips-checkbox-container checkbox-enabled">
                         <label className="tips-checkbox-label" htmlFor="confirm-tips">
-                            <div className="tips-checkbox-custom error">
-                                <input className="tips-checkbox ng-untouched ng-pristine" formcontrolname="isTipsConfirmed" id="confirm-tips" type="checkbox" disabled=""/>
+                            <div className="tips-checkbox-custom" style={{marginBottom:'35px'}} >
+                                <Checkboxes checked={this.state.agreedToAppreciationAmout} handleChange={this.newhandleChange} />
                             </div>
                         <span className="tips-checkbox-text"> I agree, that this amount will be charged in addition to the cost of the airline ticket(s) </span>
-                    </label></div></div></div>
+                    </label></div></div></div>                    
                 <div id="chargeC"_ngcontent-ojn-c12="" className="wrapper total ng-untouched ng-pristine ng-invalid" id="total-block">
                     <div _ngcontent-ojn-c12="" className="total-price-info"><div _ngcontent-ojn-c12="" className="total-title">
                         <h3 _ngcontent-ojn-c12="" className="total-top-title">
                             <span _ngcontent-ojn-c12="" className="title-span"style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}> Total ticket price</span>
-                            <span _ngcontent-ojn-c12="" className="price-span"style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>{this.state.price} </span>
+                            <span _ngcontent-ojn-c12="" className="price-span"style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>${this.state.price} </span>
                             </h3></div>
-                            <h2 _ngcontent-ojn-c12="" className="total-title__wire" style={{fontSize:'29px',textAlign:'center', marginBottom:'0px'}}> Total to be charged : ${this.state.price}</h2>
-                            <h3 _ngcontent-ojn-c12="" style={{}} className="total-pre-title" style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>  {` `+ numWords.toWords(this.state.price).toUpperCase()+` DOLLARS`} </h3>
-                            </div><div _ngcontent-ojn-c12="" className="ng-star-inserted">
-                                <label _ngcontent-ojn-c12="" className="checkbox checkbox__success" htmlFor="confirm4">
-<input _ngcontent-ojn-c12="" formcontrolname="cardCharge" id="confirm4" type="checkbox" className="ng-untouched ng-pristine ng-invalid"/>
-    <span _ngcontent-ojn-c12="" className="checkbox__text"> I agree that my card will be charged the above total amount which includes the SkyLux consulting fee and the applicable airline and government imposed taxes and fees . 
-                </span></label></div></div></div>}
+                            <h2 _ngcontent-ojn-c12="" className="total-title__wire" style={{fontSize:'29px',textAlign:'center', marginBottom:'0px'}}> Total to be charged : ${parseInt(this.state.price) +parseInt(this.state.appreciation_amount)}</h2>
+                            <h3 _ngcontent-ojn-c12="" className="total-pre-title" style={{fontSize:'18px',textAlign:'center', marginBottom:'0px'}}>  {` `+ numWords.toWords(this.state.price).toUpperCase()+` DOLLARS`} </h3>
+                            </div>
+                            </div></div>}
                
                 {this.state.visible?<CustomButton type="submit" />:null}
-                {this.state.booked?<SimpleAlerts/>:<div style={{marginLeft:'40%'}}><StripeCheckoutButton price={this.state.price} disabled={this.state.booked} onToken={this.onToken}></StripeCheckoutButton></div>}
+                {this.state.booked ?<SimpleAlerts/>:<div style={{marginLeft:'40%',marginTop:'100px',height:'100px',width:'150px'}}><StripeCheckoutButton price={this.state.price} disabled={this.state.booked } onToken={this.onToken}></StripeCheckoutButton></div>}
                 <ToastContainer />
         </form>
     </div>)
+    }
+    handleAppreciation=(event)=>{
+            event.persist()
+            event.preventDefault()
+            if(event.target.value<0)
+               {return}
+            this.setState({appreciation_amount:event.target.value||0})
+    }
+    handleTermsAgreed=(event)=>{
+        {console.log(this.state.agreedToTerms)}
+        this.setState({agreedToTerms:!this.state.agreedToTerms})
+    }
+    catchErrors=()=>{
+        if(this.state.appreciation_amount>0)
+        {
+            if(this.state.agreedToAppreciationAmout&&this.state.agreedToTerms)
+            {
+                return true
+            }
+            else return false
+        }
+        else {
+            if(this.state.agreedToTerms){
+                return true
+            }
+            return false
+        }
     }
 }
 
