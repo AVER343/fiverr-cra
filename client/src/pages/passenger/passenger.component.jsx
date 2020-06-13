@@ -172,7 +172,7 @@ async componentDidMount (){
                             </div>
                             </div></div>}
                
-                {this.state.visible?<CustomButton type="submit" />:null}
+                {this.state.visible?<CustomButton type="submit">Submit</CustomButton>:null}
                 {this.state.booked ?<SimpleAlerts/>:<div style={{marginLeft:'40%',marginTop:'100px',height:'100px',width:'150px'}}><StripeCheckoutButton price={this.state.price} disabled={this.state.booked } onToken={this.onToken}></StripeCheckoutButton></div>}
                 <ToastContainer />
         </form>

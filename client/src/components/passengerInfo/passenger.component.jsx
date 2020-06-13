@@ -54,12 +54,12 @@ const PassengerInfoComponent= (props)=>{
           <span className="helper-text" data-error="'Male' or 'Female'" data-success=""></span>
       </div>
       </div>
-         <FormInput required label={'Firstname'} value={props.state.firstname||''}  name={'firstname'} onChange={handleChange}></FormInput>
+         {/* <FormInput required label={'Firstname'} value={props.state.firstname||''}  name={'firstname'} onChange={handleChange}></FormInput>
          <FormInput required label={'Middlename'} required={false} value={props.state.middlename||''}  name={'middlename'} onChange={handleChange}></FormInput>
-         <FormInput  required label={'Lastname'} value={props.state.lastname||''}  name={'lastname'} onChange={handleChange}></FormInput>
-         <input id="email" type="email" className="validate" name="email" placeholder={'Email'} value={props.state.email||''}  onChange={handleChange}/>
-          <label htmlFor="email">Email</label>
-          <span className="helper-text" data-error="Invalid Email" data-success=""></span>
+        //  <FormInput  required label={'Lastname'} value={props.state.lastname||''}  name={'lastname'} onChange={handleChange}></FormInput> */}
+        {/* //  <input id="email" type="email" className="validate" name="email" placeholder={'Email'} value={props.state.email||''}  onChange={handleChange}/>
+        //   <label htmlFor="email">Email</label>
+        //   <span className="helper-text" data-error="Invalid Email" data-success=""></span> */}
     </div>)
 }
 export default PassengerInfoComponent
